@@ -1,0 +1,29 @@
+{
+  "name": "spaced-repetition-api",
+  "version": "1.0.0",
+  "description": "An API to help you apply spaced repetition technique.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stelardn/spaced-repetition-api.git"
+  },
+  "keywords": [
+    "nest",
+    "ddd",
+    "spaced",
+    "repetition"
+  ],
+  "author": "Stéfany Larissa Dantas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stelardn/spaced-repetition-api/issues"
+  },
+  "homepage": "https://github.com/stelardn/spaced-repetition-api#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
