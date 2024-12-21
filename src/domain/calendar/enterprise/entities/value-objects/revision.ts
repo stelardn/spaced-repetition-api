@@ -4,11 +4,13 @@ export interface RevisionProps {
 }
 
 export class Revision {
-  public props: RevisionProps
+  protected props: RevisionProps
 
   constructor(date: Date) {
-    this.props.date = date
-    this.props.completed = false
+    this.props = {
+      date,
+      completed: false,
+    }
   }
 
   static createRevisionsFromInitialDate(initialDate: Date): Revision[] {
