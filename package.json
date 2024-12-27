@@ -4,7 +4,14 @@
   "description": "An API to help you apply spaced repetition technique.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "vitest",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "yarn run compile",
+    "pretest": "yarn run compile",
+    "posttest": "yarn run lint"
   },
   "repository": {
     "type": "git",
