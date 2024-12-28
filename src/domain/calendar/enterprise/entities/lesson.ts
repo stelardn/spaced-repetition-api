@@ -1,4 +1,4 @@
-import { Revision } from './value-objects/revision'
+import { Revision } from './revision'
 import { randomUUID, UUID } from 'node:crypto'
 
 export interface LessonProps {
@@ -26,8 +26,20 @@ export class Lesson {
     this.theme = theme ?? null
     this.tags = tags ?? []
     this.date = date ? new Date(date) : new Date()
-    this.revisions = Revision.createRevisionsFromInitialDate(this.date)
+    this.revisions = Revision.createRevisionsFromLesson(this)
     this.references = references ?? []
     this.course = course ?? null
+  }
+
+  get id() {
+    return this.lessonId
+  }
+
+  get dateDayOfMonth() {
+    return this.date.getDate()
+  }
+
+  get lessonRevisions() {
+    return this.revisions
   }
 }

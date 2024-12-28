@@ -1,5 +1,6 @@
 import { Lesson } from '../../enterprise/entities/lesson'
 import { LessonsRepository } from '../repositories/LessonsRepository'
+import { RevisionsRepository } from '../repositories/RevisionsRepository'
 
 interface RegisterLessonUseCaseRequest {
   subject: string
@@ -11,7 +12,10 @@ interface RegisterLessonUseCaseRequest {
 }
 
 export class RegisterLessonUseCase {
-  constructor(private lessonsRepository: LessonsRepository) {}
+  constructor(
+    private lessonsRepository: LessonsRepository,
+    private revisionsRepository: RevisionsRepository,
+  ) {}
 
   async execute({
     subject,
@@ -31,6 +35,7 @@ export class RegisterLessonUseCase {
     })
 
     await this.lessonsRepository.create(lesson)
+    await this.revisionsRepository.bulkCreate(lesson.lessonRevisions)
 
     return lesson
   }
