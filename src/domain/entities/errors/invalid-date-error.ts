@@ -1,4 +1,4 @@
-import { AppError } from "./app-error";
+import { AppError } from "../../../core/errors/app-error";
 
 export class InvalidDateError extends AppError {
   constructor(inputDate: string) {
