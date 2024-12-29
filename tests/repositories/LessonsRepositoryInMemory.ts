@@ -9,7 +9,7 @@ export class LessonsRepositoryInMemory extends LessonsRepository {
     this.items.push(lesson)
   }
 
-  async getManyById(ids: UUID[]): Promise<Lesson[]> {
+  async getManyByIds(ids: UUID[]): Promise<Lesson[]> {
     return this.items.filter(item => ids.find(id => item.id === id))
   }
 }
