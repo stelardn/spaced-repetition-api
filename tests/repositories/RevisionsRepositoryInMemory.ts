@@ -9,6 +9,12 @@ export class RevisionsRepositoryInMemory extends RevisionsRepository {
   }
 
   async getByDate(date: Date): Promise<Revision[]> {
-    return this.items.filter(item => item.dueDate === date);
+    const items = this.items.filter(item => {
+      const dueDate = item.dueDate.toDateString()
+      const isEqual = dueDate === date.toDateString()
+      return isEqual
+    })
+
+    return items
   }
 }
