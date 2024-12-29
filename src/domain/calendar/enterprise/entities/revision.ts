@@ -37,4 +37,8 @@ export class Revision {
   get parentLessonId() {
     return this.lessonId
   }
+
+  toggleCompletion() {
+    this.completed = !this.completed
+  }
 }
