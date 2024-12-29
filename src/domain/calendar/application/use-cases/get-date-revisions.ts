@@ -31,7 +31,7 @@ export class GetDateRevisionsUseCase {
     }
 
     const dateRevisions = await this.revisionsRepository.getByDate(revisionDate)
-    const dateRevisionsIds = dateRevisions.map(revision => revision.parentLessonId)
+    const dateRevisionsIds = dateRevisions.map(revision => revision.lessonId)
     const dateLessons = await this.lessonsRepository.getManyByIds(dateRevisionsIds)
 
     return dateLessons

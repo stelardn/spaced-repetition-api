@@ -7,16 +7,16 @@ export interface RevisionProps {
 }
 
 export class Revision {
-  private revisionId: UUID
-  private date: Date
-  private completed: boolean
-  private lessonId: UUID
+  private _revisionId: UUID
+  private _date: Date
+  private _completed: boolean
+  private _lessonId: UUID
 
   constructor({ date, lessonId }: RevisionProps) {
-    this.revisionId = randomUUID()
-    this.date = date
-    this.completed = false
-    this.lessonId = lessonId
+    this._revisionId = randomUUID()
+    this._date = date
+    this._completed = false
+    this._lessonId = lessonId
   }
 
   static createRevisionsFromLesson(lesson: Lesson): Revision[] {
@@ -33,23 +33,23 @@ export class Revision {
     return revisions
   }
 
-  get dueDate() {
-    return this.date
+  get date() {
+    return this._date
   }
 
-  get parentLessonId() {
-    return this.lessonId
+  get lessonId() {
+    return this._lessonId
   }
 
   get id() {
-    return this.revisionId
+    return this._revisionId
   }
 
   get isCompleted() {
-    return this.completed
+    return this._completed
   }
 
   toggleCompletion() {
-    this.completed = !this.completed
+    this._completed = !this._completed
   }
 }

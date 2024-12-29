@@ -35,7 +35,7 @@ export class RegisterLessonUseCase {
     })
 
     await this.lessonsRepository.create(lesson)
-    await this.revisionsRepository.bulkCreate(lesson.lessonRevisions)
+    await this.revisionsRepository.bulkCreate(lesson.revisions)
 
     return lesson
   }

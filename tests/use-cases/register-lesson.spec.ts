@@ -44,8 +44,8 @@ describe('RegisterLessonUseCase Unit Tests', async () => {
       theme: faker.word.words(3),
     })
 
-    expect(revisionsRepository.items[0].dueDate).toEqual(new Date(2025, 0, 1))
-    expect(revisionsRepository.items[1].dueDate).toEqual(new Date(2025, 0, 7))
-    expect(revisionsRepository.items[2].dueDate).toEqual(new Date(2025, 0, 30))
+    expect(revisionsRepository.items[0].date).toEqual(new Date(2025, 0, 1))
+    expect(revisionsRepository.items[1].date).toEqual(new Date(2025, 0, 7))
+    expect(revisionsRepository.items[2].date).toEqual(new Date(2025, 0, 30))
   })
 })
