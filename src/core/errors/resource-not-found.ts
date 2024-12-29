@@ -1,6 +1,6 @@
 import { AppError } from './app-error'
 
-export default class ResourceNotFoundError extends AppError {
+export class ResourceNotFoundError extends AppError {
   constructor(resourceName?: string, resourceValue?: any) {
     super(
       `The resource ${resourceName || ''} was not found.`,

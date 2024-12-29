@@ -41,6 +41,14 @@ export class Revision {
     return this.lessonId
   }
 
+  get id() {
+    return this.revisionId
+  }
+
+  get isCompleted() {
+    return this.completed
+  }
+
   toggleCompletion() {
     this.completed = !this.completed
   }

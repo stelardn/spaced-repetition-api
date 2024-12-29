@@ -1,5 +1,6 @@
 import { Revision } from '../../src/domain/calendar/enterprise/entities/revision'
 import { RevisionsRepository } from '../../src/domain/calendar/application/repositories/RevisionsRepository'
+import { UUID } from 'crypto'
 
 export class RevisionsRepositoryInMemory extends RevisionsRepository {
   public items: Revision[] = []
@@ -16,5 +17,19 @@ export class RevisionsRepositoryInMemory extends RevisionsRepository {
     })
 
     return items
+  }
+
+  async getById(id: UUID): Promise<Revision | null> {
+    return this.items.find(item => item.id === id) || null
+  }
+
+  async save(revision: Revision): Promise<Revision | null> {
+    const revisionIndex = this.items.findIndex(item => item.id === revision.id)
+
+    if (revisionIndex === -1) return null
+
+    this.items[revisionIndex] = revision
+
+    return this.items[revisionIndex]
   }
 }

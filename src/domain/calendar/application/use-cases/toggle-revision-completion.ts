@@ -1,6 +1,6 @@
 import { UUID } from "node:crypto";
 import { RevisionsRepository } from "../repositories/RevisionsRepository";
-import ResourceNotFoundError from "@/core/errors/resource-not-found";
+import { ResourceNotFoundError } from "@errors/resource-not-found";
 
 interface ToggleRevisionCompletionUseCaseRequest {
   revisionId: UUID
