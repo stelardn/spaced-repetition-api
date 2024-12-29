@@ -3,7 +3,7 @@ import { Lesson } from './lesson'
 
 export interface RevisionProps {
   date: Date
-  completed: boolean
+  lessonId: UUID
 }
 
 export class Revision {
@@ -12,7 +12,7 @@ export class Revision {
   private completed: boolean
   private lessonId: UUID
 
-  constructor(date: Date, lessonId: UUID) {
+  constructor({ date, lessonId }: RevisionProps) {
     this.revisionId = randomUUID()
     this.date = date
     this.completed = false
@@ -24,7 +24,10 @@ export class Revision {
     const revisions = spacedPeriodsInDays.map(period => {
       const targetDate = new Date()
       targetDate.setDate(lesson.dateDayOfMonth + period)
-      return new Revision(targetDate, lesson.id)
+      return new Revision({
+        date: targetDate,
+        lessonId: lesson.id
+      })
     })
 
     return revisions
