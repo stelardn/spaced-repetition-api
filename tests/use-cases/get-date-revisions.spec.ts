@@ -3,11 +3,10 @@ import { GetDateRevisionsUseCase } from '../../src/domain/calendar/application/u
 import { RegisterLessonUseCase } from '../../src/domain/calendar/application/use-cases/register-lesson';
 import { LessonsRepositoryInMemory } from '../repositories/LessonsRepositoryInMemory';
 import { faker } from '@faker-js/faker';
-import { Lesson } from '../../src/domain/calendar/enterprise/entities/lesson';
 import { RevisionsRepositoryInMemory } from '../repositories/RevisionsRepositoryInMemory';
 import { afterEach } from 'node:test';
 
-describe('RegisterLessonUseCase Unit Tests', async () => {
+describe('GetDateRevisionsUseCase Unit Tests', async () => {
   let sut: GetDateRevisionsUseCase
   let lessonsRepository: LessonsRepositoryInMemory
   let revisionsRepository: RevisionsRepositoryInMemory
