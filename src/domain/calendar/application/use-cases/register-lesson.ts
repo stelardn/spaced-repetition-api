@@ -6,7 +6,7 @@ interface RegisterLessonUseCaseRequest {
   subject: string
   theme: string
   tags?: string[]
-  date?: string
+  date?: Date
   course?: string
   references?: string[]
 }
