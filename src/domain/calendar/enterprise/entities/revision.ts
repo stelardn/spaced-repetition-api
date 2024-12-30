@@ -7,13 +7,13 @@ export interface RevisionProps {
 }
 
 export class Revision {
-  private _revisionId: UUID
+  private _id: UUID
   private _date: Date
   private _completed: boolean
   private _lessonId: UUID
 
   constructor({ date, lessonId }: RevisionProps) {
-    this._revisionId = randomUUID()
+    this._id = randomUUID()
     this._date = date
     this._completed = false
     this._lessonId = lessonId
@@ -42,7 +42,7 @@ export class Revision {
   }
 
   get id() {
-    return this._revisionId
+    return this._id
   }
 
   get isCompleted() {
