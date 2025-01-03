@@ -16,10 +16,7 @@
     "start:dev": "nest start --watch",
     "start:prod": "node ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stelardn/spaced-repetition-api.git"
-  },
+  "repository": "git+https://github.com/stelardn/spaced-repetition-api.git",
   "keywords": [
     "nest",
     "ddd",
@@ -34,6 +31,8 @@
   "homepage": "https://github.com/stelardn/spaced-repetition-api#readme",
   "devDependencies": {
     "@faker-js/faker": "^9.3.0",
+    "@nestjs/cli": "^10.4.9",
+    "@nestjs/schematics": "^10.2.3",
     "@types/node": "^22.7.5",
     "gts": "^6.0.2",
     "prisma": "^6.1.0",
@@ -41,7 +40,6 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8"
   },
-  "type": "module",
   "dependencies": {
     "@nestjs/common": "^10.4.15",
     "@nestjs/core": "^10.4.15",
