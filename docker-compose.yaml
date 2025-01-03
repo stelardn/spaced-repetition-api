@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  spaced-repetition-pg:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=docker
+      - POSTGRES_DB=spaced-repetition
+    ports:
+      - 5432:5432
