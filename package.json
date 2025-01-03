@@ -11,7 +11,10 @@
     "fix": "gts fix",
     "prepare": "yarn run compile",
     "pretest": "yarn run compile",
-    "posttest": "yarn run lint"
+    "posttest": "yarn run lint",
+    "build": "nest build",
+    "start:dev": "nest start --watch",
+    "start:prod": "node ."
   },
   "repository": {
     "type": "git",
@@ -40,6 +43,11 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "6.1.0"
+    "@nestjs/common": "^10.4.15",
+    "@nestjs/core": "^10.4.15",
+    "@nestjs/platform-express": "^10.4.15",
+    "@prisma/client": "6.1.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
   }
 }
