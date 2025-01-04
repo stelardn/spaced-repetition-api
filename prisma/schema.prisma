@@ -22,7 +22,7 @@ model Revision {
   id String @id @default(uuid())
   date DateTime
   completed Boolean
-  lessonId String
+  lessonId String @map("lesson_id")
 
   lesson Lesson @relation(fields: [lessonId], references: [id])
 }
