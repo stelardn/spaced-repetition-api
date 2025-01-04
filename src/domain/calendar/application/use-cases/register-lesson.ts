@@ -1,17 +1,9 @@
 import { Lesson } from '../../enterprise/entities/lesson'
+import { IRegisterLessonUseCase, RegisterLessonUseCaseRequest } from '../interfaces/register-lesson.use-case.interface'
 import { LessonsRepository } from '../repositories/LessonsRepository'
 import { RevisionsRepository } from '../repositories/RevisionsRepository'
 
-interface RegisterLessonUseCaseRequest {
-  subject: string
-  theme: string
-  tags?: string[]
-  date?: Date
-  course?: string
-  references?: string[]
-}
-
-export class RegisterLessonUseCase {
+export class RegisterLessonUseCase implements IRegisterLessonUseCase {
   constructor(
     private lessonsRepository: LessonsRepository,
     private revisionsRepository: RevisionsRepository,
