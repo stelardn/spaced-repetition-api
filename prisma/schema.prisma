@@ -20,7 +20,7 @@ model Lesson {
 
 model Revision {
   id String @id @default(uuid())
-  date DateTime
+  date DateTime @db.Date
   completed Boolean
   lessonId String @map("lesson_id")
 
