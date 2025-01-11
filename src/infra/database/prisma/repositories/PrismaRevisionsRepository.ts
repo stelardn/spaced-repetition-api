@@ -28,12 +28,34 @@ export class PrismaRevisionsRepository implements RevisionsRepository {
 
     return revisions
   }
-  getById(id: UUID): Promise<Revision | null> {
-    throw new Error("Method not implemented.");
+  async getById(id: UUID): Promise<Revision | null> {
+    const dbItem = await this.prismaService.revision.findUnique({
+      where: {
+        id
+      }
+    })
+
+    if (!dbItem) return null
+
+    const revision = PrismaRevisionsMapper.toDomain(dbItem)
+    return revision
   }
-  save(revision: Revision): Promise<Revision | null> {
-    throw new Error("Method not implemented.");
+
+  async save(revision: Revision): Promise<Revision | null> {
+    const data = PrismaRevisionsMapper.toPrisma(revision)
+
+    const updatedDbItem = await this.prismaService.revision.update({
+      data,
+      where: {
+        id: revision.id
+      }
+    })
+
+    const updatedRevision = PrismaRevisionsMapper.toDomain(updatedDbItem)
+
+    return updatedRevision
   }
+
   bulkDelete(revisions: Revision[]): Promise<void> {
     throw new Error("Method not implemented.");
   }

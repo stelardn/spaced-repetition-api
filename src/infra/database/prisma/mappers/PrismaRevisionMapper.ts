@@ -5,8 +5,10 @@ import { UUID } from "crypto";
 export class PrismaRevisionsMapper {
   static toDomain(raw: PrismaRevision): DomainRevision {
     const domainRevision = new DomainRevision({
+      id: raw.id as UUID,
       date: raw.date,
-      lessonId: raw.lessonId as UUID
+      lessonId: raw.lessonId as UUID,
+      completed: raw.completed,
     })
 
     return domainRevision

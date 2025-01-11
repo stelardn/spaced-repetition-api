@@ -1,12 +1,7 @@
-import { UUID } from "node:crypto";
-import { RevisionsRepository } from "../repositories/RevisionsRepository";
-import { ResourceNotFoundError } from "@errors/resource-not-found";
-
-interface ToggleRevisionCompletionUseCaseRequest {
-  revisionId: UUID
-}
-
-export class ToggleRevisionCompletionUseCase {
+import { RevisionsRepository } from "../repositories/RevisionsRepository"
+import { ResourceNotFoundError } from "@errors/resource-not-found"
+import { IToggleRevisionCompletionUseCase, ToggleRevisionCompletionUseCaseRequest } from "../interfaces/toggle-revision-completion.use-case.interface"
+export class ToggleRevisionCompletionUseCase implements IToggleRevisionCompletionUseCase {
   constructor(private revisionsRepository: RevisionsRepository) {}
 
   async execute({ revisionId }: ToggleRevisionCompletionUseCaseRequest) {

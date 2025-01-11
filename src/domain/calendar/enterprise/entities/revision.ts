@@ -4,6 +4,8 @@ import { Lesson } from './lesson'
 export interface RevisionProps {
   date: Date
   lessonId: UUID
+  completed?: boolean
+  id?: UUID
 }
 
 export class Revision {
@@ -12,10 +14,10 @@ export class Revision {
   private _completed: boolean
   private _lessonId: UUID
 
-  constructor({ date, lessonId }: RevisionProps) {
-    this._id = randomUUID()
+  constructor({ date, lessonId, id, completed }: RevisionProps) {
+    this._id = id ?? randomUUID()
     this._date = date
-    this._completed = false
+    this._completed = completed ?? false
     this._lessonId = lessonId
   }
 

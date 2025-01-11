@@ -5,9 +5,11 @@ import { RegisterLessonUseCase } from "@/domain/calendar/application/use-cases/r
 import { DatabaseModule } from "@/infra/database/database.module";
 import { LessonsRepository } from "@/domain/calendar/application/repositories/LessonsRepository";
 import { RevisionsRepository } from "@/domain/calendar/application/repositories/RevisionsRepository";
-import { GetDateRevisionsController } from "./controllers/get-date-revisions.controller";
 import { IGetDateRevisionsUseCase } from "@/domain/calendar/application/interfaces/get-date-revisions.use-case.interface";
 import { GetDateRevisionsUseCase } from "@/domain/calendar/application/use-cases/get-date-revisions";
+import { IToggleRevisionCompletionUseCase } from "@/domain/calendar/application/interfaces/toggle-revision-completion.use-case.interface";
+import { ToggleRevisionCompletionUseCase } from "@/domain/calendar/application/use-cases/toggle-revision-completion";
+import { RevisionsController } from "./controllers/revisions.controller";
 
 @Module({
   imports: [
@@ -15,7 +17,7 @@ import { GetDateRevisionsUseCase } from "@/domain/calendar/application/use-cases
   ],
   controllers: [
     RegisterLessonController,
-    GetDateRevisionsController,
+    RevisionsController,
   ],
   providers: [
     {
@@ -37,6 +39,15 @@ import { GetDateRevisionsUseCase } from "@/domain/calendar/application/use-cases
         return new GetDateRevisionsUseCase(lessonsRepository, revisionsRepository)
       },
       inject: [LessonsRepository, RevisionsRepository]
+    },
+    {
+      provide: IToggleRevisionCompletionUseCase,
+      useFactory: (
+        revisionsRepository: RevisionsRepository
+      ) => {
+        return new ToggleRevisionCompletionUseCase(revisionsRepository)
+      },
+      inject: [RevisionsRepository]
     },
   ]
 })
