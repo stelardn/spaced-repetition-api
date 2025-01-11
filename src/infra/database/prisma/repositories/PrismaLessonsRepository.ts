@@ -19,8 +19,17 @@ export class PrismaLessonsRepository implements LessonsRepository {
     })
   }
   
-  getManyByIds(ids: UUID[]): Promise<Lesson[]> {
-    throw new Error("Method not implemented.");
+  async getManyByIds(ids: UUID[]): Promise<Lesson[]> {
+    const items = await this.prismaService.lesson.findMany({
+      where: {
+        id: {
+          in: ids
+        }
+      }
+    })
+
+    const lessons = items.map(PrismaLessonsMapper.toDomain)
+    return lessons
   }
   getById(id: UUID): Promise<Lesson | null> {
     throw new Error("Method not implemented.");

@@ -17,8 +17,16 @@ export class PrismaRevisionsRepository implements RevisionsRepository {
       data
     })
   }
-  getByDate(date: Date): Promise<Revision[]> {
-    throw new Error("Method not implemented.");
+  async getByDate(date: Date): Promise<Revision[]> {
+    const items = await this.prismaService.revision.findMany({
+      where: {
+        date
+      }
+    })
+
+    const revisions = items.map(PrismaRevisionsMapper.toDomain) 
+
+    return revisions
   }
   getById(id: UUID): Promise<Revision | null> {
     throw new Error("Method not implemented.");
