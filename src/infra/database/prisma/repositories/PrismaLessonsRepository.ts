@@ -31,11 +31,33 @@ export class PrismaLessonsRepository implements LessonsRepository {
     const lessons = items.map(PrismaLessonsMapper.toDomain)
     return lessons
   }
-  getById(id: UUID): Promise<Lesson | null> {
-    throw new Error("Method not implemented.");
+
+  async getById(id: UUID): Promise<Lesson | null> {
+    const dbItem = await this.prismaService.lesson.findUnique({
+      where: {
+        id
+      }
+    })
+
+    if (!dbItem) return null
+
+    const lesson = PrismaLessonsMapper.toDomain(dbItem)
+    return lesson
   }
-  save(lesson: Lesson): Promise<Lesson | null> {
-    throw new Error("Method not implemented.");
+
+  async save(lesson: Lesson): Promise<Lesson | null> {
+    const data = PrismaLessonsMapper.toPrisma(lesson)
+
+    const updatedDbItem = await this.prismaService.lesson.update({
+      data,
+      where: {
+        id: lesson.id
+      }
+    })
+
+    const updatedLesson = PrismaLessonsMapper.toDomain(updatedDbItem)
+
+    return updatedLesson
   }
 
 }

@@ -3,18 +3,9 @@ import { Lesson } from '../../enterprise/entities/lesson'
 import { LessonsRepository } from '../repositories/LessonsRepository'
 import { RevisionsRepository } from '../repositories/RevisionsRepository'
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found'
+import { EditLessonUseCaseRequest, IEditLessonUseCase } from '../interfaces/edit-lesson.use-case.interface'
 
-interface EditLessonUseCaseRequest {
-  lessonId: UUID,
-  subject?: string
-  theme?: string
-  tags?: string[]
-  date?: Date
-  course?: string
-  references?: string[]
-}
-
-export class EditLessonUseCase {
+export class EditLessonUseCase implements IEditLessonUseCase {
   constructor(
     private lessonsRepository: LessonsRepository,
     private revisionsRepository: RevisionsRepository
@@ -50,19 +41,18 @@ export class EditLessonUseCase {
     }
 
     if (date) {
-      const previousRevisions = lesson.revisions
       lesson.date = date
       const newRevisions = lesson.revisions
       promises.push(
-        this.revisionsRepository.bulkCreate(newRevisions),
-        this.revisionsRepository.bulkDelete(previousRevisions)
+        this.revisionsRepository.deleteManyByLessonId(lessonId)
+          .then(() => this.revisionsRepository.bulkCreate(newRevisions))
       )
     }
 
     promises.unshift(this.lessonsRepository.save(lesson))
 
-    const [updatedLesson] = await Promise.all(promises)
+    await Promise.all(promises)
     
-    return updatedLesson || null
+    return lesson
   }
 }

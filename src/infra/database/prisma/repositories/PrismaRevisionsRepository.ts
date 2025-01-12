@@ -56,7 +56,11 @@ export class PrismaRevisionsRepository implements RevisionsRepository {
     return updatedRevision
   }
 
-  bulkDelete(revisions: Revision[]): Promise<void> {
-    throw new Error("Method not implemented.");
+  async deleteManyByLessonId(lessonId: UUID): Promise<void> {
+    await this.prismaService.revision.deleteMany({
+      where: {
+        lessonId
+      }
+    })
   }
 }

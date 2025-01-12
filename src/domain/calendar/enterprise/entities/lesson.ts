@@ -8,6 +8,7 @@ export interface LessonProps {
   date?: Date
   course?: string
   references?: string[]
+  id?: UUID
 }
 
 export class Lesson {
@@ -20,8 +21,8 @@ export class Lesson {
   private _course: string | null
   private _references: string[]
 
-  constructor({ subject, tags, date, course, references, theme }: LessonProps) {
-    this._id = randomUUID()
+  constructor({ subject, tags, date, course, references, theme, id }: LessonProps) {
+    this._id = id ?? randomUUID()
     this._subject = subject
     this._theme = theme ?? null
     this._tags = tags ?? []

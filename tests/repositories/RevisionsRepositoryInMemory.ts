@@ -33,9 +33,9 @@ export class RevisionsRepositoryInMemory extends RevisionsRepository {
     return this.items[revisionIndex]
   }
 
-  async bulkDelete(revisions: Revision[]): Promise<void> {
+  async deleteManyByLessonId(lessonId: UUID): Promise<void> {
     const filteredItems = this.items.filter(item => 
-      !revisions.find(revision => revision.id === item.id)
+      lessonId !== item.lessonId
     )
 
     this.items = filteredItems
