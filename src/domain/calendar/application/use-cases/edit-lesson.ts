@@ -1,4 +1,3 @@
-import { UUID } from 'crypto'
 import { Lesson } from '../../enterprise/entities/lesson'
 import { LessonsRepository } from '../repositories/LessonsRepository'
 import { RevisionsRepository } from '../repositories/RevisionsRepository'

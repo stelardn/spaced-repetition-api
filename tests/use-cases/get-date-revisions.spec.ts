@@ -1,4 +1,4 @@
-import { describe, beforeEach, it, expect, vitest, vi } from 'vitest'
+import { describe, beforeEach, it, expect, vi } from 'vitest'
 import { GetDateRevisionsUseCase } from '../../src/domain/calendar/application/use-cases/get-date-revisions';
 import { RegisterLessonUseCase } from '../../src/domain/calendar/application/use-cases/register-lesson';
 import { LessonsRepositoryInMemory } from '../repositories/LessonsRepositoryInMemory';

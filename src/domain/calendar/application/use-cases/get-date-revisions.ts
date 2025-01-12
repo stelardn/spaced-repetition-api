@@ -14,13 +14,13 @@ export class GetDateRevisionsUseCase implements IGetDateRevisionsUseCase {
   ) {}
 
   async execute({ date }: GetDateRevisionsUseCaseRequest): Promise<Lesson[]> {
-    const [year, month, day] = date?.split('-').map(Number)
+    const [year, month, day] = date.split('-').map(Number)
     let revisionDate
 
     try {
       const monthIndex = month - 1
       revisionDate = new Date(year, monthIndex, day)
-    } catch (error) {
+    } catch {
       throw new InvalidDateError(date)
     }
 

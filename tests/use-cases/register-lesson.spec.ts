@@ -1,6 +1,5 @@
 import { describe, beforeEach, it, expect, afterEach, vi } from 'vitest'
 import { RegisterLessonUseCase } from '../../src/domain/calendar/application/use-cases/register-lesson';
-import { LessonsRepository } from '../../src/domain/calendar/application/repositories/LessonsRepository'
 import { LessonsRepositoryInMemory } from '../repositories/LessonsRepositoryInMemory';
 import { faker } from '@faker-js/faker';
 import { Lesson } from '../../src/domain/calendar/enterprise/entities/lesson';
@@ -39,7 +38,7 @@ describe('RegisterLessonUseCase Unit Tests', async () => {
   })
 
   it('must create revisions in the defined spaced repetition intervals', async () => {
-    const result = await sut.execute({
+    await sut.execute({
       subject: faker.word.words(2),
       theme: faker.word.words(3),
     })

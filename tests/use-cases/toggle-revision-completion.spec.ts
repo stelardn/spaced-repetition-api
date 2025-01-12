@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from '../../src/core/errors/resource-not-found'
-import { describe, beforeEach, it, expect, vitest, vi } from 'vitest'
+import { describe, beforeEach, it, expect } from 'vitest'
 import { ToggleRevisionCompletionUseCase } from '../../src/domain/calendar/application/use-cases/toggle-revision-completion';
 import { RevisionsRepositoryInMemory } from '../repositories/RevisionsRepositoryInMemory';
 import { makeRevision } from '../factories/make-revision';

@@ -22,7 +22,7 @@ export class LessonsRepositoryInMemory extends LessonsRepository {
 
     if (itemIndex === -1) return null
 
-    this.items[itemIndex] === lesson
+    this.items[itemIndex] = lesson
 
     return this.items[itemIndex]
   }
