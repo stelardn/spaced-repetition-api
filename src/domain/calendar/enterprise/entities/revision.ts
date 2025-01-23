@@ -1,5 +1,7 @@
 import { randomUUID, UUID } from 'node:crypto'
 import { Lesson } from './lesson'
+import { AggregateRoot } from '@/core/entities/aggregate-root'
+import { RevisionCreatedEvent } from '../events/revision-created'
 
 export interface RevisionProps {
   date: Date
@@ -8,14 +10,13 @@ export interface RevisionProps {
   id?: UUID
 }
 
-export class Revision {
-  private _id: UUID
+export class Revision extends AggregateRoot {
   private _date: Date
   private _completed: boolean
   private _lessonId: UUID
 
   constructor({ date, lessonId, id, completed }: RevisionProps) {
-    this._id = id ?? randomUUID()
+    super(id  ?? randomUUID())
     this._date = date
     this._completed = completed ?? false
     this._lessonId = lessonId
@@ -26,10 +27,14 @@ export class Revision {
     const revisions = spacedPeriodsInDays.map(period => {
       const targetDate = new Date()
       targetDate.setDate(lesson.dateDayOfMonth + period)
-      return new Revision({
+      const newRevision = new Revision({
         date: targetDate,
-        lessonId: lesson.id
+        lessonId: lesson.id,
       })
+
+      newRevision.addDomainEvent(new RevisionCreatedEvent(newRevision, lesson))
+
+      return newRevision
     })
 
     return revisions
@@ -41,10 +46,6 @@ export class Revision {
 
   get lessonId() {
     return this._lessonId
-  }
-
-  get id() {
-    return this._id
   }
 
   get isCompleted() {
